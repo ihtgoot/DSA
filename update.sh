@@ -9,11 +9,12 @@ cd "$REPO_DIR" || {
 
 NOW=$(date '+%F %H:%M:%S')
 
-STATUS=$(git status)
+STATUS1=$(git status)
+STATUS2=$(git add .)
 
 echo "$NOW"
-echo "$STATUS"
-git add .
+echo "$STATUS1"
+echo "$STATUS2"
 
 git diff --cached --quiet && {
     echo "Nothing to commit"
@@ -21,7 +22,7 @@ git diff --cached --quiet && {
 } 
 
 message="update | $NOW"
-body="$STATUS"
+body="$STATUS1"+"$STATUS2"
 
 git commit -m "$message" -m "$body"
 
