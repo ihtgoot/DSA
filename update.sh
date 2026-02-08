@@ -3,6 +3,12 @@ set -euo pipefail
 
 LOG_FILE="/media/ihtgoot/toshiba_ext/DataStructureAndAlgorithm/DSA/log.DSA"
 REPO_DIR="/media/ihtgoot/toshiba_ext/DataStructureAndAlgorithm/DSA"
+ERROR_LOG="/tmp/dsa-error.log"
+
+if [ ! -d "$REPO_DIR" ]; then
+    echo "$(date '+%F %H:%M:%S') - Repository directory not found. External drive may not be mounted." >> "$ERROR_LOG"
+    exit 1
+fi
 
 cd "$REPO_DIR" || { 
     echo "Failed to cd into $REPO_DIR"
