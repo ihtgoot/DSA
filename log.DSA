@@ -259,3 +259,23 @@ Changes to be committed:
 
 
 
+2026-02-08 22:30:01
+----------------------------------------------
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   stack/L1/stack_array
+	modified:   stack/L1/stack_array.cpp
+	new file:   stack/L1/stack_linkedlist.cpp
+
+ stack/L1/stack_array          | Bin 0 -> 18456 bytes
+ stack/L1/stack_array.cpp      | 111 +++++++++++++++++------------
+ stack/L1/stack_linkedlist.cpp | 159 ++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 224 insertions(+), 46 deletions(-)
+
+----------------------------------------------
+
+
+
