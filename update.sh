@@ -17,14 +17,12 @@ cd "$REPO_DIR" || {
 
 NOW=$(date '+%F %H:%M:%S')
 
-# Get status BEFORE adding to log file
-STATUS1=$(git status)
-
-# Add all changes first
+# Add all changes first (excluding log file for now)
 git add .
 
-# Check if there are any staged changes
-if git diff --cached --quiet; then
+# Check if there are any staged changes (excluding log.DSA)
+if git diff --cached --quiet -- . ':!log.DSA'; then
+    # No changes except possibly log.DSA
     {
         echo "$NOW"
         echo "----------------------------------------------"
@@ -34,6 +32,8 @@ if git diff --cached --quiet; then
     exit 0
 fi
 
+# Get status for logging
+STATUS1=$(git status)
 STATUS2=$(git diff --cached --stat)
 
 # Write to log file BEFORE committing so it gets included in the commit
@@ -60,9 +60,11 @@ if ! git commit -m "$message" -m "$body"; then
 fi
 
 # Pull with rebase
-if ! git pull --rebase origin main; then
-    echo "$(date '+%F %H:%M:%S') - Git pull failed - attempting to continue" >> "$ERROR_LOG"
-    # Try to continue if it's just "already up to date"
+if ! git pull --rebase origin main 2>&1 | grep -q "up to date"; then
+    # Only log if it's NOT "already up to date"
+    if [ ${PIPESTATUS[0]} -ne 0 ]; then
+        echo "$(date '+%F %H:%M:%S') - Git pull failed" >> "$ERROR_LOG"
+    fi
 fi
 
 # Push changes
@@ -70,5 +72,3 @@ if ! git push origin main; then
     echo "$(date '+%F %H:%M:%S') - Git push failed" >> "$ERROR_LOG"
     exit 1
 fi
-
-echo "$(date '+%F %H:%M:%S') - Successfully completed" >> "$ERROR_LOG"
