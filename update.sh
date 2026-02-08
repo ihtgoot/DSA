@@ -11,7 +11,7 @@ if [ ! -d "$REPO_DIR" ]; then
 fi
 
 cd "$REPO_DIR" || { 
-    echo "Failed to cd into $REPO_DIR"
+    echo "$(date '+%F %H:%M:%S') - Failed to cd into $REPO_DIR" >> "$ERROR_LOG"
     exit 1
 }
 
@@ -46,5 +46,13 @@ message="update | $NOW"
 body="$STATUS1"$'\n\n'"$STATUS2"
 
 git commit -m "$message" -m "$body"
+
+# Stash any uncommitted changes before pulling
+git stash --include-untracked || true
+
 git pull --rebase origin main
+
+# Reapply stashed changes if any
+git stash pop || true
+
 git push origin main
