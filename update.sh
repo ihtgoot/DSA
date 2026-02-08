@@ -13,8 +13,12 @@ STATUS1=$(git status)
 STATUS2=$(git add .)
 
 echo "$NOW"
+echo "----------------------------------------------"
 echo "$STATUS1"
+echo
 echo "$STATUS2"
+echo 
+echo
 
 git diff --cached --quiet && {
     echo "Nothing to commit"
