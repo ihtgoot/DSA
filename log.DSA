@@ -279,3 +279,24 @@ Changes to be committed:
 
 
 
+2026-02-08 23:00:01
+----------------------------------------------
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   stack/L1/stack_array.cpp
+	new file:   stack/L2/Day 134_180 Stack Problems.pdf
+	new file:   stack/L2/notes.md
+
+ stack/L1/stack_array.cpp                |  58 ++++++++++++++++++++++++++------
+ stack/L2/Day 134_180 Stack Problems.pdf | Bin 0 -> 34494 bytes
+ stack/L2/notes.md                       |   9 +++++
+ 3 files changed, 57 insertions(+), 10 deletions(-)
+
+----------------------------------------------
+
+
+

@@ -1,22 +1,62 @@
 #include<iostream>
 using namespace std;
 
+class Node{
+    public:
+    int data;
+    Node *next;
+    Node(int value): data(value), next(NULL){
+    }
+    ~Node(){
+    }
+};
+
 class Stack{
     private:
-    
-    
+        Node *top;
+        int Size;  
     public:
-    
+        Stack(){
+            top=NULL;
+            Size=0;
+        }
+        ~Stack(){
+            delete top;
+        }
+        void push(int val){
+            Node *temp = new Node(val);
+            if(temp==NULL){
+                throw overflow_error("stack overflow");
+            }
+            temp->next=top;
+            top=temp;
+            Size++;
+        }
+        void pop(){
+            if(top==NULL){
+                throw underflow_error("stack underflow");
+            }
+            else{
+                Node *temp=top;
+                top=top->next;
+                delete temp;
+            }
+        }
+        int peek(){
+            return top->data;
+        }
+        int size(){
+            return Size;
+        }
+        int isEmpty(){
+            return top==NULL;
+        }
 };
 
 int main() {
 
     try {
-        int n;
-        cin >> n;
-
-        Stack stk(n);
-
+        Stack stk;
         // Test 1: Empty stack
         if (!stk.isEmpty() || stk.size() != 0) {
             cout << "FAIL: stack should be empty initially\n";
@@ -31,9 +71,7 @@ int main() {
         }
 
         // Test 3: Multiple pushes
-        stk.resize();
         stk.push(20);
-        stk.resize();
         stk.push(30);
         if (stk.peek() != 30 || stk.size() != 3) {
             cout << "FAIL: LIFO broken\n";
