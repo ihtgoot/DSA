@@ -17,3 +17,5 @@ git diff --cached --quiet && {
 message="update | $NOW | $STATUS"
 
 git commit -m "$message"
+
+git push origin main
