@@ -16,10 +16,14 @@ cd "$REPO_DIR" || {
 }
 
 NOW=$(date '+%F %H:%M:%S')
+
+# Get status BEFORE adding to log file
 STATUS1=$(git status)
 
+# Add all changes first
 git add .
 
+# Check if there are any staged changes
 if git diff --cached --quiet; then
     {
         echo "$NOW"
@@ -32,6 +36,7 @@ fi
 
 STATUS2=$(git diff --cached --stat)
 
+# Write to log file BEFORE committing so it gets included in the commit
 {
     echo "$NOW"
     echo "----------------------------------------------"
@@ -42,17 +47,28 @@ STATUS2=$(git diff --cached --stat)
     echo "----------------------------------------------"
 } >> "$LOG_FILE"
 
+# Add the log file to this commit
+git add "$LOG_FILE"
+
 message="update | $NOW"
 body="$STATUS1"$'\n\n'"$STATUS2"
 
-git commit -m "$message" -m "$body"
+# Commit everything including the log
+if ! git commit -m "$message" -m "$body"; then
+    echo "$(date '+%F %H:%M:%S') - Git commit failed" >> "$ERROR_LOG"
+    exit 1
+fi
 
-# Stash any uncommitted changes before pulling
-git stash --include-untracked || true
+# Pull with rebase
+if ! git pull --rebase origin main; then
+    echo "$(date '+%F %H:%M:%S') - Git pull failed - attempting to continue" >> "$ERROR_LOG"
+    # Try to continue if it's just "already up to date"
+fi
 
-git pull --rebase origin main
+# Push changes
+if ! git push origin main; then
+    echo "$(date '+%F %H:%M:%S') - Git push failed" >> "$ERROR_LOG"
+    exit 1
+fi
 
-# Reapply stashed changes if any
-git stash pop || true
-
-git push origin main
+echo "$(date '+%F %H:%M:%S') - Successfully completed" >> "$ERROR_LOG"
