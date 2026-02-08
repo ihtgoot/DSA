@@ -45,6 +45,9 @@ STATUS2=$(git diff --cached --stat)
     echo "$STATUS2"
     echo
     echo "----------------------------------------------"
+    echo
+    echo
+    echo
 } >> "$LOG_FILE"
 
 # Add the log file to this commit
@@ -59,13 +62,13 @@ if ! git commit -m "$message" -m "$body"; then
     exit 1
 fi
 
-# Pull with rebase
-if ! git pull --rebase origin main 2>&1 | grep -q "up to date"; then
-    # Only log if it's NOT "already up to date"
-    if [ ${PIPESTATUS[0]} -ne 0 ]; then
-        echo "$(date '+%F %H:%M:%S') - Git pull failed" >> "$ERROR_LOG"
-    fi
-fi
+# # Pull with rebase
+# if ! git pull --rebase origin main 2>&1 | grep -q "up to date"; then
+#     # Only log if it's NOT "already up to date"
+#     if [ ${PIPESTATUS[0]} -ne 0 ]; then
+#         echo "$(date '+%F %H:%M:%S') - Git pull failed" >> "$ERROR_LOG"
+#     fi
+# fi
 
 # Push changes
 if ! git push origin main; then
