@@ -45,10 +45,15 @@ class MaxStack{
                 cout<<"stack is empty";
                 return;
             }
-            int max = topM();
+            auto maxOpt = topM();
+            if(!maxOpt) return;
+            int max = *maxOpt;
             stack<int>buffer;
             while(!stk.empty() && top() != max){
-                buffer.push(top());
+                auto t = top();
+                if(!t) return;
+                int x = *t;
+                buffer.push(x);
                 stk.pop();
                 stkM.pop();
             }
