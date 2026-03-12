@@ -43,16 +43,15 @@ class max_Heap {
         size++;
     }
 
-    void pop(){
+    int pop(){
         if(size==0){
             throw underflow_error("heap underflow");
         }
+        int top = arr[0];
         arr[0]=arr[size-1];
         size--;
-        if(size==0){
-            return;
-        }
-        heapify(0)
+        heapify(0);
+        return top;
     }
 
     void print(){
@@ -76,6 +75,6 @@ int main(){
         Mheap.insert(k);
     }
     Mheap.print();
-    Mheap.pop();
+    cout<<Mheap.pop()<<endl;
     Mheap.print();
 }
