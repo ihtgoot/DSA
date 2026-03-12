@@ -7,6 +7,20 @@ class max_Heap {
     int size;
     int total_size;
     
+    void heapify(int idx){
+        int largest = idx;
+        int leftChild = 2*idx+1;
+        int rightChild= 2*idx+2;
+        if(leftChild < size && arr[leftChild]>arr[largest])
+            largest = leftChild;
+        if(rightChild < size && arr[rightChild]>arr[largest])
+            largest = rightChild;
+        if(largest != idx){
+            swap(arr[largest],arr[idx]);
+            heapify(largest);
+        }
+    }
+
     public:
     
     max_Heap(int n): size(0), total_size(n){
@@ -29,6 +43,18 @@ class max_Heap {
         size++;
     }
 
+    void pop(){
+        if(size==0){
+            throw underflow_error("heap underflow");
+        }
+        arr[0]=arr[size-1];
+        size--;
+        if(size==0){
+            return;
+        }
+        heapify(0)
+    }
+
     void print(){
         int a = 0;
         for(int i=0;i<size;i++){
@@ -49,5 +75,7 @@ int main(){
         cin>>k;
         Mheap.insert(k);
     }
+    Mheap.print();
+    Mheap.pop();
     Mheap.print();
 }

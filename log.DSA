@@ -870,3 +870,21 @@ Changes to be committed:
 
 
 
+2026-03-12 09:00:01
+----------------------------------------------
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   heap/heap.cpp
+	modified:   heap/heap.go
+
+ heap/heap.cpp | 28 ++++++++++++++++++++++++++++
+ heap/heap.go  | 31 +++++++++++++++++++++++++++++--
+ 2 files changed, 57 insertions(+), 2 deletions(-)
+
+----------------------------------------------
+
+
+
