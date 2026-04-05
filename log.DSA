@@ -1180,3 +1180,21 @@ Changes to be committed:
 
 
 
+2026-04-05 19:00:01
+----------------------------------------------
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   heap/heap
+	deleted:    heap/heap.cpp
+
+ heap/heap     | Bin 0 -> 18184 bytes
+ heap/heap.cpp |  50 --------------------------------------------------
+ 2 files changed, 50 deletions(-)
+
+----------------------------------------------
+
+
+
