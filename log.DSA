@@ -1352,3 +1352,29 @@ Changes to be committed:
 
 
 
+2026-04-06 22:00:01
+----------------------------------------------
+Nothing to commit
+----------------------------------------------
+2026-04-06 22:30:02
+----------------------------------------------
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   log.DSA
+	new file:   tree/creating_tree.cpp
+	new file:   tree/creting_tree_V1
+	new file:   tree/creting_tree_and_PreInPost.cpp
+
+ log.DSA                             |   4 +++
+ tree/creating_tree.cpp              |  50 ++++++++++++++++++++++++++++++
+ tree/creting_tree_V1                | Bin 0 -> 31680 bytes
+ tree/creting_tree_and_PreInPost.cpp |  60 ++++++++++++++++++++++++++++++++++++
+ 4 files changed, 114 insertions(+)
+
+----------------------------------------------
+
+
+
