@@ -38,6 +38,7 @@ Node *CreateTree(){
     Node *root = new Node(x);
     root->left = CreateTree();
     root->right = CreateTree();
+    return root;
 }
 
 int main(){
