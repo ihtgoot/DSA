@@ -17,6 +17,12 @@ void heapify(vector<int>&arr,int idx, int size){
     }
 }
 
+void BuildMaxHeap(vector<int>&arr){
+    for(int i=(arr.size()/2)-1;i>=0;i--){
+        heapify(arr,i,arr.size());
+    }
+}
+
 void sortHeapSort(vector<int>&arr){
     int n = arr.size();
     for(int i=n-1;i>=0;i--){
@@ -32,6 +38,7 @@ int main(){
     for(int i=0;i<n;i++){
         cin>>arr[i];
     }
+    BuildMaxHeap(arr);
     sortHeapSort(arr);
     for(int i=0;i<n;i++){
         cout<<arr[i]<<" ";
