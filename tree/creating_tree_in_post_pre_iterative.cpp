@@ -1,5 +1,6 @@
 #include<iostream>
-#include<queue>
+#include<vector>
+#include<stack>
 using namespace std;
 
 class Node {
@@ -11,23 +12,45 @@ class Node {
     }
 };
 
-void inorder(Node *root){
-    if(!root)   return;
-    inorder(root->left);
-    cout<<root->data<<" ";
-    inorder(root->right);
+vector<int> inorder(Node *root){
+    vector<int>ans;
+    stack<Node *>stk;
+    stk.push(root);
+    while(!stk.empty()){
+        Node *temp = stk.top();
+        stk.pop();
+        if(temp->left)  stk.push(temp->left);
+        ans.push_back(temp->data);
+        if(temp->right)  stk.push(temp->right);
+    }
+    return ans;
+
 }
-void postorder(Node *root){
-    if(!root)   return;
-    postorder(root->left);
-    postorder(root->right);
-    cout<<root->data<<" ";
+vector<int> postorder(Node *root){
+    vector<int>ans;
+    stack<Node *>stk;
+    stk.push(root);
+    while(!stk.empty()){
+        Node *temp = stk.top();
+        stk.pop();
+        if(temp->left)  stk.push(temp->left);
+        if(temp->right)  stk.push(temp->right);
+        ans.push_back(temp->data);
+    }
+    return ans;
 }
-void preorder(Node *root){
-    if(!root)   return;
-    cout<<root->data<<" ";
-    preorder(root->left);
-    preorder(root->right);
+vector<int> preorder(Node *root){
+    vector<int>ans;
+    stack<Node *>stk;
+    stk.push(root);
+    while(!stk.empty()){
+        Node *temp = stk.top();
+        stk.pop();
+        ans.push_back(temp->data);
+        if(temp->left)  stk.push(temp->left);
+        if(temp->right)  stk.push(temp->right);
+    }
+    return ans;
 }
 
 Node *CreateTree(){
@@ -43,9 +66,19 @@ Node *CreateTree(){
 
 int main(){
     Node * root = CreateTree();
-    inorder(root);
+    vector<int>in = inorder(root);
+    vector<int>post = postorder(root);
+    vector<int>pre = preorder(root);
+    for(int i=0;i<in.size();i++){
+        cout<<in[i]<<" ";
+    }
     cout<<endl;
-    postorder(root);
+    for(int i=0;i<in.size();i++){
+        cout<<post[i]<<" ";
+    }
     cout<<endl;
-    preorder(root);
+    for(int i=0;i<in.size();i++){
+        cout<<pre[i]<<" ";
+    }
+    cout<<endl;
 }

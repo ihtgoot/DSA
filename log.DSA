@@ -1434,3 +1434,21 @@ Changes to be committed:
 
 
 
+2026-04-07 08:30:01
+----------------------------------------------
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   tree/creating_tree_in_post_pre_iterative
+	modified:   tree/creating_tree_in_post_pre_iterative.cpp
+
+ tree/creating_tree_in_post_pre_iterative     | Bin 0 -> 38744 bytes
+ tree/creating_tree_in_post_pre_iterative.cpp |  71 ++++++++++++++++++++-------
+ 2 files changed, 52 insertions(+), 19 deletions(-)
+
+----------------------------------------------
+
+
+
