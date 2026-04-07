@@ -17,11 +17,14 @@ vector<int> inorder(Node *root){
     vector<int>ans;
     stack<Node *>stk;
     stk.push(root);
-    
-    
-    
+    while(!stk.empty()){
+        Node *temp = stk.top();
+        stk.pop();
+        if(temp->right)  stk.push(temp->right);
+        stk.push(temp)
+        if(temp->left)  stk.push(temp->left);
+    }
     return ans;
-
 }
 vector<int> postorder(Node *root){
     vector<int>ans;
